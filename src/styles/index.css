@@ -1,0 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------
+   Design tokens. Values are RGB channels so Tailwind can apply opacity
+   (e.g. border-line/15). Edit here to re-theme the whole site.
+------------------------------------------------------------------- */
+:root,
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: 5 6 10;            /* near-black, like the EXSORA site */
+  --surface: 12 14 22;
+  --raised: 22 25 38;
+  --line: 255 255 255;
+  --ink: 240 240 246;
+  --muted: 148 152 172;
+  --accent: 110 130 255;   /* electric blue */
+  --accent2: 168 85 247;   /* violet */
+  --accent3: 34 211 238;   /* cyan */
+  --on-accent: 5 6 10;
+  --danger: 248 113 113;
+  --aurora: 1;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg: 248 247 252;
+  --surface: 255 255 255;
+  --raised: 236 234 246;
+  --line: 20 22 40;
+  --ink: 16 18 32;
+  --muted: 95 99 120;
+  --accent: 67 56 202;
+  --accent2: 126 34 206;
+  --accent3: 8 145 178;
+  --on-accent: 255 255 255;
+  --danger: 185 28 28;
+  --aurora: 0.45;
+}
+
+:root {
+  --grad: linear-gradient(110deg, rgb(var(--accent)) 0%, rgb(var(--accent2)) 55%, rgb(var(--accent3)) 100%);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-bg font-sans text-base text-ink antialiased;
+    overflow-x: clip;
+  }
+  h1, h2, h3 {
+    @apply font-display tracking-tight;
+  }
+  ::selection {
+    background: rgb(var(--accent) / 0.35);
+  }
+  :focus-visible {
+    outline: 2px solid rgb(var(--accent));
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@layer components {
+  .wrap {
+    @apply mx-auto w-full max-w-[1240px] px-5 sm:px-8 lg:px-12;
+  }
+  .prose-copy {
+    @apply max-w-[62ch] text-[1.0625rem] leading-[1.75] text-muted;
+  }
+  .chip {
+    @apply inline-flex items-center rounded-md border border-line/15 px-3 py-1.5 text-sm text-ink;
+  }
+}
+
+/* Smooth whole-site theme change. The class is added for ~400ms by the toggle. */
+.theme-transition,
+.theme-transition *,
+.theme-transition *::before,
+.theme-transition *::after {
+  transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease,
+    fill 0.35s ease, stroke 0.35s ease !important;
+}
+
+.sr-only-focusable:not(:focus):not(:focus-within) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* ---------- Premium effects ---------- */
+.grad-text {
+  background-image: var(--grad);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shine 9s linear infinite;
+}
+.bg-grad {
+  background-image: var(--grad);
+  background-size: 160% auto;
+  transition: background-position 0.5s ease, filter 0.2s ease;
+}
+.bg-grad:hover { background-position: 100% 0; }
+
+.aurora {
+  position: absolute; inset: -10% -10% auto -10%; height: 95%;
+  pointer-events: none; overflow: hidden; z-index: -1; opacity: var(--aurora);
+}
+.aurora::before, .aurora::after {
+  content: ''; position: absolute; border-radius: 50%;
+  width: 55vw; height: 55vw; max-width: 820px; max-height: 820px;
+  animation: drift 20s ease-in-out infinite alternate; will-change: transform;
+}
+.aurora::before { left: -6%; top: -8%; background: radial-gradient(circle, rgb(var(--accent2) / 0.5), transparent 65%); }
+.aurora::after { right: -4%; top: 6%; background: radial-gradient(circle, rgb(var(--accent3) / 0.4), transparent 65%); animation-delay: -8s; }
+
+.grid-bg {
+  position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background-image:
+    linear-gradient(rgb(var(--line) / 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--line) / 0.07) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 28%, #000 25%, transparent 72%);
+  mask-image: radial-gradient(ellipse at 50% 28%, #000 25%, transparent 72%);
+}
+
+/* Cursor-following glow on cards. --mx / --my are set by useSpotlight. */
+.spot { position: relative; isolation: isolate; }
+.spot::before {
+  content: ''; position: absolute; inset: 0; z-index: -1; border-radius: inherit;
+  background: radial-gradient(440px circle at var(--mx, 50%) var(--my, 50%), rgb(var(--accent2) / 0.18), transparent 60%);
+  opacity: 0; transition: opacity 0.3s ease; pointer-events: none;
+}
+.spot:hover::before { opacity: 1; }
+
+.glass {
+  background: rgb(var(--surface) / 0.72);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  border: 1px solid rgb(var(--line) / 0.18); border-radius: 999px;
+}
+.float { animation: floaty 6s ease-in-out infinite; }
+
+.marquee { display: flex; width: max-content; animation: marq 42s linear infinite; }
+.marquee-wrap:hover .marquee { animation-play-state: paused; }
+
+@keyframes shine { to { background-position: 200% center; } }
+@keyframes drift { to { transform: translate3d(7%, 9%, 0) scale(1.12); } }
+@keyframes floaty { 50% { transform: translateY(-9px); } }
+@keyframes marq { to { transform: translateX(-50%); } }

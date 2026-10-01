@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+    <title>Raj Meena | Web Developer in Dewas, India</title>
+    <meta
+      name="description"
+      content="Raj Meena is a web developer from Dewas, Madhya Pradesh. Full-stack MERN and WordPress development, plus graphic design and video editing for businesses and startups."
+    />
+    <meta name="author" content="Raj Meena" />
+    <link rel="canonical" href="https://rajmeena.in/" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#05060A" />
+    <meta name="color-scheme" content="dark light" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Raj Meena" />
+    <meta property="og:title" content="Raj Meena | Web Developer" />
+    <meta
+      property="og:description"
+      content="Websites and digital work for real businesses: full-stack MERN, WordPress, graphic design and video editing."
+    />
+    <meta property="og:url" content="https://rajmeena.in/" />
+    <meta property="og:image" content="https://rajmeena.in/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Raj Meena, Web Developer" />
+    <meta property="og:locale" content="en_IN" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Raj Meena | Web Developer" />
+    <meta
+      name="twitter:description"
+      content="Websites and digital work for real businesses: full-stack MERN, WordPress, graphic design and video editing."
+    />
+    <meta name="twitter:image" content="https://rajmeena.in/og-image.jpg" />
+
+    <!-- Icons -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-48.png" sizes="48x48" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Hanken+Grotesk:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Apply the saved theme before first paint to avoid a flash -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('rm-theme');
+          var theme =
+            saved === 'light' || saved === 'dark'
+              ? saved
+              : window.matchMedia('(prefers-color-scheme: light)').matches
+              ? 'light'
+              : 'dark';
+          document.documentElement.setAttribute('data-theme', theme);
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute('content', theme === 'light' ? '#F8F7FC' : '#05060A');
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- Person structured data (verified details only) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "@id": "https://rajmeena.in/#person",
+        "name": "Raj Meena",
+        "url": "https://rajmeena.in/",
+        "image": "https://rajmeena.in/images/raj-meena.jpg",
+        "jobTitle": "Web Developer",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Dewas",
+          "addressRegion": "Madhya Pradesh",
+          "addressCountry": "IN"
+        },
+        "sameAs": [
+          "https://www.linkedin.com/in/raj-meena-51ab8132b/",
+          "https://github.com/mrrajmeena0702-arch",
+          "https://www.instagram.com/mr.abhaymeena30/"
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root">
+      <!-- Shown to crawlers and users without JavaScript; replaced when React mounts -->
+      <main style="font-family:system-ui,sans-serif;max-width:40rem;margin:4rem auto;padding:0 1.25rem;line-height:1.6;color:#ECEAE4;background:#05060A">
+        <h1>Raj Meena, Web Developer</h1>
+        <p>
+          I build websites and digital experiences for real businesses. I work across full-stack
+          (MERN) and WordPress development, graphic design and video editing from Dewas, Madhya
+          Pradesh, India.
+        </p>
+        <p><a style="color:#6084FF" href="mailto:mr.rajmeena0702@gmail.com">mr.rajmeena0702@gmail.com</a></p>
+      </main>
+    </div>
+    <noscript>This portfolio works best with JavaScript enabled.</noscript>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

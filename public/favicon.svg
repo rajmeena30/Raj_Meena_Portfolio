@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    .bg{fill:#0E1014}.fg{fill:#ECEAE4}.dot{fill:#6084FF}
+    @media (prefers-color-scheme: light){.bg{fill:#14161B}.fg{fill:#F6F4EF}}
+  </style>
+  <rect class="bg" width="64" height="64" rx="14"/>
+  <text class="fg" x="32" y="42" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="-1">RM</text>
+  <circle class="dot" cx="52" cy="52" r="3.5"/>
+</svg>
